@@ -1,0 +1,131 @@
+<html>
+<head>
+</head>
+<body>
+<p align=center> Money: </p>
+<p id="Cash" align=center> 0 </p>
+
+<p align="left"><button id="Owned" onclick="ShowOwned()">Show Owned Items</button></p>
+<p align="left"><button id="Chicken fight" onclick="Gamble()"> Chicken Fight </button></p>
+
+<p align="center"><button id="Click" onclick="Click()">Click!</button></p>
+<p align="right"><button id="S1" onclick="Shovel()"> Shovel: 50 </button></p>
+<p align="right"><button id="S2" onclick="Carrage()"> Carrage: 300 </button></p>
+<p align="right"><button id="S3" onclick="Farm()"> Cabbage Farm: 1000 </button></p>
+
+<script>
+//Variablen
+var money = 0;
+var hasS1 = 'No';
+var hasS2 = 'No';
+var hasS3 = 'No';
+var looseMoney = 0;
+var repeat = 0;
+
+
+//Intervals
+function MoneyS2() {
+money++;
+document.getElementById("Cash").innerHTML = money;
+}
+
+function MoneyS3() {
+while(repeat <= 10) {
+money++;
+repeat++;
+}
+repeat = 0;
+document.getElementById("Cash").innerHTML = money;
+}
+
+//ShowOwned
+function ShowOwned() {
+alert('Shovel: ' + hasS1 + '  Carrage: ' + hasS2 + '  Cabbage Farm: ' + hasS3);
+}
+
+function Gamble() {
+var chickenFight = Math.floor(Math.random() * 10) + 1;  
+
+if(chickenFight >= 7) {
+alert('You win');
+Win();
+}
+else {
+alert('You lose');
+Lose();
+}
+
+function Win() {
+while(repeat <= 49) {
+money++;
+repeat++;
+}
+repeat = 0;
+document.getElementById("Cash").innerHTML = money;
+}
+}
+
+function Lose() {
+while(repeat <= 99) {
+money--;
+repeat++;
+}
+repeat = 0;
+document.getElementById("Cash").innerHTML = money;
+}
+//MainClick
+function Click() { 
+money++;
+if (hasS1 == 'Yes') {
+money++;
+}
+document.getElementById("Cash").innerHTML = money;
+}
+
+//Item1
+function Shovel() {
+if (money >= 50) {
+hasS1 = 'Yes';
+while (looseMoney != 50) {
+looseMoney++;
+money--;
+}
+}
+document.getElementById("Cash").innerHTML = money;
+looseMoney = 0;
+document.getElementById("S1").setAttribute("style","visibility:hidden");
+}
+
+//Item2
+function Carrage() {
+if (money >= 300) {
+hasS2 = 'Yes'
+while (looseMoney != 300) {
+looseMoney++,
+money--;
+}
+}
+document.getElementById("Cash").innerHTML = money;
+looseMoney = 0;
+document.getElementById("S2").setAttribute("style","visibility:hidden");
+setInterval(MoneyS2, 1000)
+}
+
+//Item3
+function Farm() {
+if (money >= 1000) {
+hasS3 = 'Yes'
+while (looseMoney != 1000) {
+looseMoney++;
+money--;
+}
+}
+document.getElementById("Cash").innerHTML = money;
+looseMoney = 0;
+document.getElementById("S3").setAttribute("style","visibility:hidden");
+setInterval(MoneyS3, 10000)
+}
+
+</script>
+</body
+</html>
